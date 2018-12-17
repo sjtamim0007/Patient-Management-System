@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
- Home Page
+<% response.sendRedirect("patient/list");%>
 </body>
 </html>
