@@ -22,6 +22,13 @@
 
 	<div id="container">
 		<div id="content">
+
+			<!-- put new button: Add Patient -->
+
+			<input type="button" value="Add Patient"
+				onclick="window.location.href='showFormForAdd'; return false;"
+				class="add-button" />
+
 			<table>
 
 				<tr>
