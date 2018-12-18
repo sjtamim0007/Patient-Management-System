@@ -60,4 +60,12 @@ public class PatientController {
 		
 		return "patient-form";
 	}
+	
+	@GetMapping("/delete")
+	public String deletePatient(@RequestParam("patientId")int theId) {
+		
+		patientService.deletePatient(theId);
+		
+		return "redirect:/patient/list";
+	}
 }

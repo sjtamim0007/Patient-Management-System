@@ -43,12 +43,25 @@ public class PatientDAOImpl implements PatientDao {
 	public Patient getPatient(int theId) {
 		// get current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
-		
-		//Retrieve patient using primary key
+
+		// Retrieve patient using primary key
 		Patient thePatient = currentSession.get(Patient.class, theId);
-		
-		
+
 		return thePatient;
+	}
+
+	@Override
+	public void deletePatient(int theId) {
+		// get current hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		//Create query for deleting object with primary key
+		Query theQuery = currentSession.createQuery("delete from Patient where id=:patientId");
+		
+		theQuery.setParameter("patientId", theId);
+		
+		theQuery.executeUpdate();
+		
 	}
 
 }
