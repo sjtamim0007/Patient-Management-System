@@ -25,7 +25,7 @@
 	
 		<form:form action="savePatient" modelAttribute="patient" method="POST">
 
-			<!-- need to associate this data with customer id -->
+			<!-- need to associate this data with patient id -->
 			<form:hidden path="id" />
 					
 			<table>

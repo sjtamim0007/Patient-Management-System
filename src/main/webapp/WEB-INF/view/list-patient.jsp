@@ -37,17 +37,26 @@
 					<td>Age</td>
 					<td>Gender</td>
 					<td>Occupation</td>
+					<td>Action</td>
 				</tr>
 
 				<!-- Loop over and print patients-->
 
 				<c:forEach var="tempPatients" items="${patients}">
+				
+				<!-- construct an "update" link with patient id -->
+					<c:url var="updateLink" value="/patient/showFormForUpdate">
+						<c:param name="patientId" value="${tempPatients.id}" />
+					</c:url>
+				
 					<tr>
 						<td>${tempPatients.name}</td>
 						<td>${tempPatients.mobileNumber}</td>
 						<td>${tempPatients.age}</td>
 						<td>${tempPatients.gender}</td>
 						<td>${tempPatients.occupation}</td>
+						<!-- display the update link -->
+						<td><a href="${updateLink}">Update</a></td>
 					</tr>
 				</c:forEach>
 
