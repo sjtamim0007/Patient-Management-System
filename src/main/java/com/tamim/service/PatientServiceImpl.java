@@ -40,4 +40,10 @@ public class PatientServiceImpl implements PatientService{
 		patientDao.deletePatient(theId);
 	}
 
+	@Override
+	@Transactional
+	public List<Patient> searchPatient(String theSearchName) {
+		return patientDao.searchPatient(theSearchName);
+	}
+
 }

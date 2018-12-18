@@ -44,28 +44,40 @@ public class PatientController {
 
 	@PostMapping("/savePatient")
 	public String savePatient(@ModelAttribute("patient") Patient thePatient) {
-		
-		//Save the patient using service
+
+		// Save the patient using service
 		patientService.savePatient(thePatient);
-		
+
 		return "redirect:/patient/list";
 	}
-	
+
 	@GetMapping("/showFormForUpdate")
-	public String showFormForUpdate(@RequestParam("patientId")int theId, Model theModel) {
-		
+	public String showFormForUpdate(@RequestParam("patientId") int theId, Model theModel) {
+
 		Patient thePatient = patientService.getPatient(theId);
-		
-		theModel.addAttribute("patient",thePatient);
-		
+
+		theModel.addAttribute("patient", thePatient);
+
 		return "patient-form";
 	}
-	
+
 	@GetMapping("/delete")
-	public String deletePatient(@RequestParam("patientId")int theId) {
-		
+	public String deletePatient(@RequestParam("patientId") int theId) {
+
 		patientService.deletePatient(theId);
-		
+
 		return "redirect:/patient/list";
+	}
+
+	@PostMapping("/search")
+	public String searchPatient(@RequestParam("theSearchName") String theSearchName, Model theModel) {
+
+		// get patient from service
+		List<Patient> thePatients = patientService.searchPatient(theSearchName);
+
+		// add the patient to the model
+		theModel.addAttribute("patients", thePatients);
+
+		return "list-patient";
 	}
 }

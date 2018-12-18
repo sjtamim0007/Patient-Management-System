@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,10 +19,19 @@
 		<div id="header">
 			<h2>Patient Management System</h2>
 		</div>
+		  <!--  add a search box -->
+            <form:form action="search" method="POST">
+                Search patient: <input type="text" name="theSearchName" />
+                
+                <input type="submit" value="Search" class="add-button" />
+            </form:form>
 	</div>
+	
+	
 
 	<div id="container">
 		<div id="content">
+		
 
 			<!-- put new button: Add Patient -->
 

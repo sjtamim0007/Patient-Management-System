@@ -54,14 +54,37 @@ public class PatientDAOImpl implements PatientDao {
 	public void deletePatient(int theId) {
 		// get current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
-		
-		//Create query for deleting object with primary key
+
+		// Create query for deleting object with primary key
 		Query theQuery = currentSession.createQuery("delete from Patient where id=:patientId");
-		
+
 		theQuery.setParameter("patientId", theId);
-		
+
 		theQuery.executeUpdate();
+
+	}
+
+	@Override
+	public List<Patient> searchPatient(String theSearchName) {
+		// get current hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
 		
+		 Query<Patient> theQuery = null;
+		 
+		 //Only Search by name if the name is not empty
+		 if(!theSearchName.equals(null) && theSearchName.trim().length() > 0) {
+			 theQuery =currentSession.createQuery("from Patient where lower(name) like :theName", Patient.class);
+			 theQuery.setParameter("theName", "%" + theSearchName.toLowerCase() + "%");
+		 }
+		 else {
+			// theSearchName is empty ... so just get all patients
+	            theQuery =currentSession.createQuery("from Patient", Patient.class);    
+		 }
+		 
+		 //Get the results
+		 List<Patient> patients = theQuery.getResultList();
+		
+		return patients;
 	}
 
 }
