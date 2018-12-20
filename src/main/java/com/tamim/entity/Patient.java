@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "patients")
@@ -14,20 +16,28 @@ public class Patient {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
-
+	
 	@Column(name = "name")
+	@NotNull(message="is required")
+	@Size(min=1, message="is required")	
 	private String name;
-
+	
 	@Column(name = "mobile")
+	@NotNull(message="is required")
+	@Size(min=1, message="is required")	
 	private String mobileNumber;
-
+	
 	@Column(name = "age")
+	@NotNull(message="is required")	
 	private int age;
-
+	
 	@Column(name = "gender")
+	@Size(min=1, message="is required")	
 	private String gender;
-
+	
 	@Column(name = "occupation")
+	@NotNull(message="is required")
+	@Size(min=1, message="is required")	
 	private String occupation;
 
 	public Patient() {

@@ -2,9 +2,12 @@ package com.tamim.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,8 +45,14 @@ public class DoctorController {
 		return "doctor-form";
 	}
 	
+	
+	
 	@PostMapping("/saveDoctor")
-	public String saveDoctor(@ModelAttribute("doctor") Doctor theDoctor) {
+	public String saveDoctor(@Valid@ModelAttribute("doctor") Doctor theDoctor,BindingResult bindingResult) {
+		if(bindingResult.hasErrors()) {
+			return "doctor-form";
+		}
+		
 		doctorService.saveDoctor(theDoctor);
 		
 		return "redirect:/doctor/list";

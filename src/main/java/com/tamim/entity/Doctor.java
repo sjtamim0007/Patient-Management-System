@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "doctors")
@@ -15,12 +17,18 @@ public class Doctor {
 	@Column(name = "id")
 	private int id;
 	
+	@NotNull(message="is required")
+	@Size(min=1, message="is required")	
 	@Column(name = "name")
 	private String name;
 
+	@NotNull(message="is required")
+	@Size(min=1, message="is required")	
 	@Column(name = "dept")
 	private String dept;
 
+	@NotNull(message="is required")
+	@Size(min=1, message="is required")	
 	@Column(name = "joining_date")
 	private String joiningDate;
 

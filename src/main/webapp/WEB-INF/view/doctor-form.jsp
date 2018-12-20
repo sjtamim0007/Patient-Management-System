@@ -11,7 +11,9 @@
 
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/add-doctor-style.css">
-
+	<style>
+		.error {color:red}
+	</style>
 </head>
 <body>
 
@@ -32,17 +34,20 @@
 				<tbody>
 					<tr>
 						<td><label>Name:</label></td>
-						<td><form:input path="name" /></td>
+						<td><form:input path="name" />
+						<form:errors path="name" cssClass="error" /></td>
 					</tr>
 				
 					<tr>
 						<td><label>Department</label></td>
-						<td><form:input path="dept" /></td>
+						<td><form:input path="dept" />
+						<form:errors path="dept" cssClass="error" /></td>
 					</tr>
 
 					<tr>
 						<td><label>Joining Date</label></td>
-						<td><form:input path="joiningDate" /></td>
+						<td><form:input path="joiningDate" />
+						<form:errors path="joiningDate" cssClass="error" /></td>
 					</tr>
 
 

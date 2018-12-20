@@ -11,6 +11,9 @@
 
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/add-patient-style.css">
+	<style>
+		.error {color:red}
+	</style>
 
 </head>
 <body>
@@ -22,37 +25,44 @@
 	</div>
 	<div id="container">
 		<h3>Save Patient</h3>
-	
+
 		<form:form action="savePatient" modelAttribute="patient" method="POST">
 
 			<!-- need to associate this data with patient id -->
 			<form:hidden path="id" />
-					
+
 			<table>
 				<tbody>
 					<tr>
 						<td><label>Name:</label></td>
-						<td><form:input path="name" /></td>
+						<td><form:input path="name" />
+						<form:errors path="name" cssClass="error" /></td>
 					</tr>
-				
+
 					<tr>
 						<td><label>Mobile Number</label></td>
-						<td><form:input path="mobileNumber" /></td>
+						<td><form:input path="mobileNumber" />
+						<form:errors path="mobileNumber" cssClass="error" /></td>
 					</tr>
 
 					<tr>
 						<td><label>Age</label></td>
-						<td><form:input path="age" /></td>
+						<td><form:input path="age" />
+						<form:errors path="age" cssClass="error" /></td>
 					</tr>
-					
+
 					<tr>
 						<td><label>Gender</label></td>
-						<td><form:input path="gender" /></td>
+						<td><label>Male</label></td>
+						<td><form:radiobutton path = "gender" value="M"/></td>
+						<td><label>Female</label></td>
+						<td><form:radiobutton path = "gender" value="F"/></td>
 					</tr>
-					
+
 					<tr>
 						<td><label>Occupation</label></td>
-						<td><form:input path="occupation" /></td>
+						<td><form:input path="occupation" />
+						<form:errors path="occupation" cssClass="error" /></td>
 					</tr>
 
 					<tr>
@@ -60,20 +70,21 @@
 						<td><input type="submit" value="Save" class="save" /></td>
 					</tr>
 
-				
+
 				</tbody>
 			</table>
-		
-		
+
+
 		</form:form>
-	
-		<div style="clear; both;"></div>
-		
+
+		<div style=""></div>
+
 		<p>
-			<a href="${pageContext.request.contextPath}/patient/list">Back To List</a>
+			<a href="${pageContext.request.contextPath}/patient/list">Back to
+				List</a>
 		</p>
-	
+
 	</div>
-	
+
 </body>
 </html>
