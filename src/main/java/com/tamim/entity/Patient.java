@@ -29,7 +29,7 @@ public class Patient {
 	
 	@Column(name = "age")
 	@NotNull(message="is required")	
-	private int age;
+	private Integer age;
 	
 	@Column(name = "gender")
 	@Size(min=1, message="is required")	
@@ -68,11 +68,11 @@ public class Patient {
 		this.mobileNumber = mobileNumber;
 	}
 
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 
