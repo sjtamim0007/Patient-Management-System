@@ -99,7 +99,14 @@
 		</div>
 	</div>
 	<p></p>
-
+	<br>
+	<c:url var="doctors" value="/doctor/list"/>
+	
+	<a href="${doctors}"> Doctors List</a>
+	
+	<br>
+	<br>
+	
 	<!-- Add a logout button -->
 	<form:form action="${pageContext.request.contextPath}/logout"
 		method="POST">

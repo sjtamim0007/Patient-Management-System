@@ -1,7 +1,7 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,25 +19,30 @@
 		<div id="header">
 			<h2>Patient Management System</h2>
 		</div>
-		  <!--  add a search box -->
-            <form:form action="search" method="POST">
+		<!--  add a search box -->
+		<form:form action="search" method="POST">
                 Search doctor: <input type="text" name="theSearchName" />
-                
-                <input type="submit" value="Search" class="add-button" />
-            </form:form>
+
+			<input type="submit" value="Search" class="add-button" />
+		</form:form>
 	</div>
-	
-	
+
+
 
 	<div id="container">
 		<div id="content">
-		
+
 
 			<!-- put new button: Add doctor -->
+			<security:authorize access="hasAnyRole('MANAGER', 'ADMIN')">
 
-			<input type="button" value="Add Doctor"
-				onclick="window.location.href='showFormForAdd'; return false;"
-				class="add-button" />
+				<!-- put new button: Add Patient -->
+
+				<input type="button" value="Add Doctor"
+					onclick="window.location.href='showFormForAdd'; return false;"
+					class="add-button" />
+
+			</security:authorize>
 
 			<table>
 
@@ -45,7 +50,10 @@
 					<td>Name</td>
 					<td>Department</td>
 					<td>Joining Date</td>
-					<td>Action</td>
+					<%-- Only show "Action" column for managers or admin --%>
+					<security:authorize access="hasAnyRole('MANAGER', 'ADMIN')">
+						<th>Action</th>
+					</security:authorize>
 				</tr>
 
 				<!-- Loop over and print patients-->
@@ -67,15 +75,34 @@
 						<td>${tempDoctors.dept}</td>
 						<td>${tempDoctors.joiningDate}</td>
 						<!-- display the update and delete link -->
-						<td><a href="${updateLink}">Update</a> | 
-						<a href="${deleteLink}"
-							onclick="if (!(confirm('Are you sure you want to delete this doctor?'))) return false">Delete</a>
-						</td>
+						<security:authorize access="hasAnyRole('MANAGER', 'ADMIN')">
+
+							<td><security:authorize
+									access="hasAnyRole('MANAGER', 'ADMIN')">
+									<!-- display the update link -->
+									<a href="${updateLink}">Update</a>
+								</security:authorize> <security:authorize access="hasAnyRole('ADMIN')">
+									<a href="${deleteLink}"
+										onclick="if (!(confirm('Are you sure you want to delete this patient?'))) return false">Delete</a>
+								</security:authorize></td>
+
+						</security:authorize>
 					</tr>
 				</c:forEach>
 
 			</table>
 		</div>
 	</div>
+	   <p>
+			<a href="${pageContext.request.contextPath}/patient/list">Back Patients List</a>
+		</p>
+
+	<!-- Add a logout button -->
+	<form:form action="${pageContext.request.contextPath}/logout"
+		method="POST">
+
+		<input type="submit" value="Logout" class="add-button" />
+
+	</form:form>
 </body>
 </html>
