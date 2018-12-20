@@ -63,7 +63,7 @@ public class DemoAppConfig implements WebMvcConfigurer {
 			throw new RuntimeException(exc);
 		}
 		
-		// for sanity's sake, let's log url and user ... just to make sure we are reading the data
+		// log url and user ... just to make sure we are reading the data
 		logger.info("jdbc.url=" + env.getProperty("jdbc.url"));
 		logger.info("jdbc.user=" + env.getProperty("jdbc.user"));
 		
@@ -109,10 +109,7 @@ public class DemoAppConfig implements WebMvcConfigurer {
 			throw new RuntimeException(exc);
 		}
 		
-		// log the connection props
-		// for sanity's sake, log this info
-		// just to make sure we are REALLY reading data from properties file
-		
+		// log the connection props	
 		logger.info(">>> security.jdbc.url=" + env.getProperty("security.jdbc.url"));
 		logger.info(">>> security.jdbc.user=" + env.getProperty("security.jdbc.user"));
 		

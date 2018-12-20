@@ -70,10 +70,10 @@ public class DoctorController {
 	@PostMapping("/search")
 	public String searchDoctor(@RequestParam("theSearchName") String theSearchName, Model theModel) {
 
-		// get patient from service
+		// get Doctor from service
 		List<Doctor> theDoctors = doctorService.searchDoctor(theSearchName);
 
-		// add the patient to the model
+		// add the Doctor to the model
 		theModel.addAttribute("doctors", theDoctors);
 
 		return "list-doctor";
