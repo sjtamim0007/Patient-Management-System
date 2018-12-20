@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tamim.entity.Doctor;
-import com.tamim.entity.Patient;
 import com.tamim.service.DoctorService;
 
 @Controller
